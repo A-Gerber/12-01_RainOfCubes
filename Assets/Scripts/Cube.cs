@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(ColorChanger))]
-public class Cube : MonoBehaviour, IInstantiating
+public class Cube : MonoBehaviour
 {
     private ColorChanger _colorChanger;
     private WaitForSeconds _wait;
