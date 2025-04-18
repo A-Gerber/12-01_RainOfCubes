@@ -9,29 +9,25 @@ public class Cube : MonoBehaviour
     private WaitForSeconds _wait;
     private int _minLifetime = 2;
     private int _maxLifetime = 5;
+    private bool _isCollided = false;
+    private Rigidbody _rigidbody;
 
-    public event Action<GameObject> Released;
-
-    public Rigidbody Rigidbody { get; private set; }
-    public GameObject CollisionCube { get; private set; }
-    public bool HaveCollision { get; private set; } = false;
-
-
+    public event Action<Cube> Released;
 
     private void Awake()
     {
         _colorChanger = GetComponent<ColorChanger>();
-        Rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
 
-        Rigidbody.useGravity = true;
+        _rigidbody.useGravity = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<Platform>(out Platform platform) && HaveCollision == false)
+        if (collision.gameObject.TryGetComponent<Platform>(out Platform platform) && _isCollided == false)
         {
             _colorChanger.ChangeColor();           
-            HaveCollision = true;
+            _isCollided = true;
             _wait = new WaitForSeconds(UnityEngine.Random.Range(_minLifetime, _maxLifetime + 1));
 
             StartCoroutine(DieOverTime());
@@ -41,11 +37,9 @@ public class Cube : MonoBehaviour
     private IEnumerator DieOverTime()
     {
         yield return _wait;
-        HaveCollision = false;
+        _isCollided = false;
         _colorChanger.SetStartColor();
 
-        GameObject thisObject = this.gameObject;
-
-        Released?.Invoke(thisObject);
+        Released?.Invoke(this);
     }
 }

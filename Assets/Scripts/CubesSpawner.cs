@@ -1,52 +1,58 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class CubesSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefabCube;
-    [SerializeField] private GameObject _startPoint;
+    [SerializeField] private Cube _prefabCube;
+    [SerializeField] private PointSpawn _startPoint;
     [SerializeField] private float _repeatRate = 1f;
     [SerializeField] private int _poolCapacity = 5;
     [SerializeField] private int _poolMaxSize = 5;
 
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<Cube> _pool;
+    private WaitForSeconds _wait;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
-        _pool = new ObjectPool<GameObject>(
+        _pool = new ObjectPool<Cube>(
             createFunc: () => Instantiate(_prefabCube),
-            actionOnGet: (obj) => ActionOnGet(obj),
-            actionOnRelease: (obj) => ActionOnRelease(obj),
-            actionOnDestroy: (obj) => Destroy(obj),
+            actionOnGet: (cube) => ActionOnGet(cube),
+            actionOnRelease: (cube) => ActionOnRelease(cube),
+            actionOnDestroy: (cube) => Destroy(cube),
             collectionCheck: true,
             defaultCapacity: _poolCapacity,
             maxSize: _poolMaxSize);
+
+        _wait = new WaitForSeconds(_repeatRate);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        InvokeRepeating(nameof(GetCube), 0.0f, _repeatRate);
+        _coroutine = StartCoroutine(GetCubesOverTime());
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDisable()
     {
-        _pool.Release(other.gameObject);
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
     }
 
-    public void ActionOnRelease(GameObject obj)
+    private void ActionOnRelease(Cube cube)
     {
-        obj.SetActive(false);
+        cube.gameObject.SetActive(false);
 
-        obj.TryGetComponent<Cube>(out Cube cube);
         cube.Released -= ReleaseCube;
     }
 
-    private void ActionOnGet(GameObject obj)
+    private void ActionOnGet(Cube cube)
     {
-        obj.transform.position = _startPoint.transform.position;
-        obj.SetActive(true);
+        cube.transform.position = _startPoint.transform.position;
+        cube.gameObject.SetActive(true);
 
-        obj.TryGetComponent<Cube>(out Cube cube);
         cube.Released += ReleaseCube;
     }
 
@@ -55,8 +61,17 @@ public class CubesSpawner : MonoBehaviour
         _pool.Get();
     }
 
-    private void ReleaseCube(GameObject obj)
+    private void ReleaseCube(Cube cube)
     {
-        _pool.Release(obj);
+        _pool.Release(cube);
+    }
+
+    private IEnumerator GetCubesOverTime()
+    {
+        while (gameObject.activeSelf)
+        {
+            yield return _wait;
+            GetCube();
+        }
     }
 }

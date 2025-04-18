@@ -215,7 +215,6 @@ GameObject:
   - component: {fileID: 367280947}
   - component: {fileID: 367280946}
   - component: {fileID: 367280945}
-  - component: {fileID: 367280944}
   - component: {fileID: 367280943}
   m_Layer: 0
   m_Name: Platform (3)
@@ -251,33 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62730c1525df1b49911e8f82fc13fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &367280944
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367280941}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!64 &367280945
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -362,7 +334,6 @@ GameObject:
   - component: {fileID: 370523659}
   - component: {fileID: 370523658}
   - component: {fileID: 370523657}
-  - component: {fileID: 370523656}
   - component: {fileID: 370523655}
   m_Layer: 0
   m_Name: Platform (1)
@@ -398,33 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62730c1525df1b49911e8f82fc13fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &370523656
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370523653}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!64 &370523657
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -634,7 +578,6 @@ GameObject:
   - component: {fileID: 700382910}
   - component: {fileID: 700382909}
   - component: {fileID: 700382908}
-  - component: {fileID: 700382911}
   - component: {fileID: 700382912}
   m_Layer: 0
   m_Name: Platform
@@ -730,33 +673,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700382906}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &700382911
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700382906}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &700382912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,7 +918,6 @@ GameObject:
   - component: {fileID: 1039378981}
   - component: {fileID: 1039378980}
   - component: {fileID: 1039378979}
-  - component: {fileID: 1039378978}
   - component: {fileID: 1039378977}
   m_Layer: 0
   m_Name: Platform (2)
@@ -1038,33 +953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62730c1525df1b49911e8f82fc13fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1039378978
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039378975}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!64 &1039378979
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1425,8 +1313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f5a2394dc9b424282a393b1d5ab31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabCube: {fileID: 7642572395205197660, guid: 0ad2ee2fd4b45c84cb486de1f6721328, type: 3}
-  _startPoint: {fileID: 617930883}
+  _prefabCube: {fileID: 4952179584329542552, guid: 0ad2ee2fd4b45c84cb486de1f6721328, type: 3}
+  _startPoint: {fileID: 617930885}
   _repeatRate: 1
   _poolCapacity: 5
   _poolMaxSize: 5
