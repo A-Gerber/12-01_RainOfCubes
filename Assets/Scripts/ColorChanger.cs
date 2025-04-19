@@ -4,22 +4,21 @@ using UnityEngine;
 public class ColorChanger : MonoBehaviour
 {
     private Renderer _renderer;
-    private Color _startColor = Color.white;
+    private Color _defaultColor = Color.white;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-
-        SetStartColor();
+        SetDefaultColor();
     }
 
     public void ChangeColor()
     {
-        _renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+        _renderer.material.color = Random.ColorHSV(); 
     }
 
-    public void SetStartColor()
+    public void SetDefaultColor()
     {
-        _renderer.material.color = _startColor;
+        _renderer.material.color = _defaultColor;
     }
 }

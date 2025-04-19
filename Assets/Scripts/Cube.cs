@@ -24,7 +24,7 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<Platform>(out Platform platform) && _isCollided == false)
+        if (_isCollided == false && collision.gameObject.TryGetComponent(out Platform platform))
         {
             _colorChanger.ChangeColor();           
             _isCollided = true;
@@ -38,7 +38,7 @@ public class Cube : MonoBehaviour
     {
         yield return _wait;
         _isCollided = false;
-        _colorChanger.SetStartColor();
+        _colorChanger.SetDefaultColor();
 
         Released?.Invoke(this);
     }
