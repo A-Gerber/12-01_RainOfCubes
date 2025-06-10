@@ -1,15 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class CubesSpawner : MonoBehaviour
+public class CubesSpawner : Spawner <Cube>
 {
-    [SerializeField] private Cube _prefabCube;
     [SerializeField] private float _repeatRate = 1f;
-    [SerializeField] private int _poolCapacity = 5;
-    [SerializeField] private int _poolMaxSize = 5;
 
-    private ObjectPool<Cube> _pool;
     private WaitForSeconds _wait;
     private Coroutine _coroutine;
 
@@ -18,16 +14,11 @@ public class CubesSpawner : MonoBehaviour
     private int _minHorizontalPosition = 1;
     private int _maxHorizontalPosition = 18;
 
-    private void Awake()
+    public event Action<Cube> Released;
+
+    protected override void Awake()
     {
-        _pool = new ObjectPool<Cube>(
-            createFunc: () => Instantiate(_prefabCube),
-            actionOnGet: (cube) => ActWhenGet(cube),
-            actionOnRelease: (cube) => ActWhenRelease(cube),
-            actionOnDestroy: (cube) => Destroy(cube),
-            collectionCheck: true,
-            defaultCapacity: _poolCapacity,
-            maxSize: _poolMaxSize);
+        base.Awake();
 
         _wait = new WaitForSeconds(_repeatRate);
     }
@@ -45,32 +36,30 @@ public class CubesSpawner : MonoBehaviour
         }
     }
 
-    private void ActWhenRelease(Cube cube)
+    protected override void OnRelease(Cube cube)
     {
-        cube.gameObject.SetActive(false);
+        base.OnRelease(cube);
 
-        cube.Released -= ReleaseCube;
+        cube.ReleasedCube -= Release;
     }
 
-    private void ActWhenGet(Cube cube)
+    protected override void OnGet(Cube cube)
     {
-        cube.gameObject.SetActive(true);
+        base.OnGet(cube);
+
         cube.transform.position = new Vector3(
             UnityEngine.Random.Range(_minHorizontalPosition, _maxHorizontalPosition + 1),
             UnityEngine.Random.Range(_minHeight, _maxHeight + 1),
             UnityEngine.Random.Range(_minHorizontalPosition, _maxHorizontalPosition + 1));
 
-        cube.Released += ReleaseCube;
+        cube.ReleasedCube += Release;
     }
 
-    private void GetCube()
+    protected override void Release(Cube cube)
     {
-        _pool.Get();
-    }
+        base.Release(cube);
 
-    private void ReleaseCube(Cube cube)
-    {
-        _pool.Release(cube);
+        Released?.Invoke(cube);
     }
 
     private IEnumerator GetCubesOverTime()
@@ -78,7 +67,7 @@ public class CubesSpawner : MonoBehaviour
         while (gameObject.activeSelf)
         {
             yield return _wait;
-            GetCube();
+            Get();
         }
     }
 }

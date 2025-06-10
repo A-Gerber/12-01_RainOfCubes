@@ -1,45 +1,26 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(ColorChanger))]
-public class Cube : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class Cube : MonoBehaviour, IPushable
 {
-    private ColorChanger _colorChanger;
-    private WaitForSeconds _wait;
-    private int _minLifetime = 2;
-    private int _maxLifetime = 5;
-    private bool _isCollided = false;
     private Rigidbody _rigidbody;
 
-    public event Action<Cube> Released;
+    public event Action<Cube> ReleasedCube;
 
     private void Awake()
     {
-        _colorChanger = GetComponent<ColorChanger>();
         _rigidbody = GetComponent<Rigidbody>();
-
         _rigidbody.useGravity = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_isCollided == false && collision.gameObject.TryGetComponent(out Platform platform))
+        if (collision.gameObject.TryGetComponent(out Platform platform))
         {
-            _colorChanger.ChangeColor();           
-            _isCollided = true;
-            _wait = new WaitForSeconds(UnityEngine.Random.Range(_minLifetime, _maxLifetime + 1));
-
-            StartCoroutine(DieOverTime());
+            ReleasedCube?.Invoke(this);
         }
     }
 
-    private IEnumerator DieOverTime()
-    {
-        yield return _wait;
-        _isCollided = false;
-        _colorChanger.SetDefaultColor();
-
-        Released?.Invoke(this);
-    }
+    public Rigidbody GetRigidbody() => _rigidbody;
 }
