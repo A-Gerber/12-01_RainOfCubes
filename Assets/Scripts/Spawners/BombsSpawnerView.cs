@@ -1,8 +1,1 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BombsSpawnerView : SpawnersView<Bomb>
-{
-
-}
+public class BombsSpawnerView : SpawnerView<Bomb> { }

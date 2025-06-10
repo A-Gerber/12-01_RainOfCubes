@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class SpawnersView<T> : MonoBehaviour where T : MonoBehaviour
+public class SpawnerView<T> : MonoBehaviour where T : MonoBehaviour
 {
     [SerializeField] private Spawner<T> _cubesSpawner;
     [SerializeField] private TextMeshProUGUI _text;

@@ -15,5 +15,4 @@ public class SpawnerData
     public void IncreaseCreatedObjects() => CreatedObjects++;
     public void IncreaseActiveObjects() => ActiveObjects++;
     public void ReduceActiveObjects() => ActiveObjects--;
-    //public void SetCountActiveObjects(int count) => ActiveObjects = count;
 }

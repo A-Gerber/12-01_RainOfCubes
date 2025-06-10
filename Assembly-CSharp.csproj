@@ -67,9 +67,9 @@
     <Compile Include="Assets\Scripts\TransparencyChanger.cs" />
     <Compile Include="Assets\Scripts\Spawners\SpawnerData.cs" />
     <Compile Include="Assets\Scripts\Spawners\CubesSpawnerView.cs" />
-    <Compile Include="Assets\Scripts\Spawners\SpawnersView.cs" />
     <Compile Include="Assets\Scripts\Spawners\CubesSpawner.cs" />
     <Compile Include="Assets\Scripts\Platform.cs" />
+    <Compile Include="Assets\Scripts\Spawners\SpawnerView.cs" />
     <Compile Include="Assets\Scripts\Cube.cs" />
     <Compile Include="Assets\Scripts\Exploder.cs" />
     <Compile Include="Assets\Scripts\Spawners\BombsSpawner.cs" />
